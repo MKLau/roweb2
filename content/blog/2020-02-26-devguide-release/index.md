@@ -67,7 +67,7 @@ We've improved the [guidance for the editor in charge of a dev guide release](ht
 #### How (not) to acknowledge rOpenSci
 
 Packages that have been reviewed can [include reviewers as authors](/blog/2018/03/16/thanking-reviewers-in-metadata/) and their README features a peer-review badge. 
-We've removed the requirement to add the rOpenSci footer, especially as it's not used on [deployed documentation website that automatically get the same footer as our website](/technotes/2019/06/07/ropensci-docs/).
+We've removed the requirement to add the rOpenSci footer, especially as it's not used on [deployed documentation websites that automatically get the same footer as our website](/technotes/2019/06/07/ropensci-docs/).
 
 ### Package documentation
 
@@ -77,7 +77,7 @@ The ["Documentation" section of the packaging guide](https://devguide.ropensci.o
 
 #### Documentation website
 
-All rOpenSci packages now have [a documentation website that's centrally build](/technotes/2019/06/07/ropensci-docs/).
+All rOpenSci packages now have [a documentation website that's centrally built](/technotes/2019/06/07/ropensci-docs/).
 We've added [some elements helping package maintainers](https://devdevguide.netlify.com/building.html#website):
 
 * [improved guidance regarding the replacement of "older" pkgdown website links and source](https://devguide.ropensci.org/approvaltemplate.html).
@@ -86,15 +86,15 @@ We've added [some elements helping package maintainers](https://devdevguide.netl
 
 * *If your package vignettes need credentials (API keys, tokens, etc.) to knit, you might want to [precompute them](/technotes/2019/12/08/precompute-vignettes/) since credentials cannot be used on the docs server.*
 
-* How to use of mathjax with rotemplate, thanks to [Hugo Gruson](https://github.com/Bisaloo).
+* How to use of [MathJax](https://www.mathjax.org/) with rotemplate, thanks to [Hugo Gruson](https://github.com/Bisaloo).
 
-* A mention that all rOpenSci docs websites automatically have search enabled using Algolia. See e.g. [`pdftools` website](https://docs.ropensci.org/pdftools/).
+* A mention that all rOpenSci docs websites automatically have search enabled using [Algolia](https://www.algolia.com). See e.g. [`pdftools` website](https://docs.ropensci.org/pdftools/).
 
 ### Misc
 
 #### CRAN gotchas
 
-We've added two [CRAN gotchas](https://devguide.ropensci.org/building.html#crangotchas). It's especially nice that those were contributed by package authors to lessen the probability of other authors' missing the policies. The gotchas are:
+We've added two [CRAN gotchas](https://devguide.ropensci.org/building.html#crangotchas). It's especially nice that those were contributed by package authors to lessen the probability of other authors' missing details of the policies. The gotchas are:
 
 * _In both the `Title` and `Description` fields, the names of packages or other external software must be quoted using single quotes (e.g., *'Rcpp' Integration for the 'Armadillo' Templated Linear Algebra Library*)._  Thanks [Aaron Wolen](https://github.com/aaronwolen).
 
@@ -118,13 +118,13 @@ We've started using GitHub Actions instead of Travis for deployment. We've got t
 
 * whenever there's a push to dev, the book is built in a `_book` folder whose content is then pushed to the `dev-site` branch that's the source for our [dev book](https://devdevguide.netlify.com).
 
-* whenever there's a commit in a PR from a repo that has `NETLIFY_SITE_ID` as secret i.e. most often the same repo and not forks, the book is built, deployed to Netlify, and a commit comment allows to find the preview URL. Getting the preview for any PR was the main motivation for our exploring a different deploy method. 
+* whenever there's a commit in a PR from a repo that has `NETLIFY_SITE_ID` as secret i.e. most often the same repo and not forks, the book is built, deployed to Netlify, and the details page of a PR check run allows to find the preview URL. Getting the preview for any PR was the main motivation for our exploring a different deploy method. 
 
-If you want to know more about GitHub actions for R, we recommend [Jim Hester's slidedeck](https://speakerdeck.com/jimhester/github-actions-for-r) and [Emil Hvitfeldt's thorough walkthrough "Deploy your bookdown project to Netlify with Github Actions"](https://www.hvitfeldt.me/blog/bookdown-netlify-github-actions/). You can also explore [our (probably improvable) workflows](https://github.com/ropensci/dev_guide/tree/dev/.github/workflows).
+If you want to know more about GitHub Actions for R, we recommend [Jim Hester's RStudio conf talk](https://resources.rstudio.com/rstudio-conf-2020/azure-pipelines-and-github-actions-jim-hester) and [Emil Hvitfeldt's thorough walkthrough "Deploy your bookdown project to Netlify with Github Actions"](https://www.hvitfeldt.me/blog/bookdown-netlify-github-actions/). You can also explore [our (probably improvable) workflows](https://github.com/ropensci/dev_guide/tree/dev/.github/workflows).
  
 #### URL checking
 
-Our [script checking URLs](https://github.com/ropensci/dev_guide/blob/master/inst/book_grooming.R) now uses commonmark instead of regular expressions. If you're interesting in programmatic URL cleaning, you can also read [the recent rOpenSci tech note about cleaning a website URLs with R](/technotes/2019/12/19/urls-tidying/).
+Our [script checking URLs](https://github.com/ropensci/dev_guide/blob/master/inst/book_grooming.R) now uses [commonmark](/technotes/2018/09/05/commonmark/) instead of regular expressions. If you're interesting in programmatic URL cleaning, you can also read [the recent rOpenSci tech note about cleaning a website URLs with R](/technotes/2019/12/19/urls-tidying/).
 
 #### Conclusion
 
