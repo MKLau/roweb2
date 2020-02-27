@@ -167,7 +167,7 @@ Here's what we now have
 <details closed>
 <summary> <span title='Click to Expand'> master workflow </span> </summary>
 
-```Markdown
+```yaml
 
 on:
   push:
@@ -224,7 +224,7 @@ jobs:
 <details closed>
 <summary> <span title='Click to Expand'> PR workflow </span> </summary>
 
-```Markdown
+```yaml
 
 on: pull_request
   
@@ -304,7 +304,7 @@ Highlights from the PR workflow above
 
 * To deploy to Netlify _and_ get the preview URL, the workflow doesn't use Netlify's GitHub Actions but instead installs Netlify CI, extracts the URL using `jq`[^3] and set it as an environment variable that can be used by next steps. I got the idea from [a thread on Netlify forum](https://community.netlify.com/t/deploying-preview-web-hook-via-api/3320/2).
 
-```
+```yaml
 run: DEPLOY_URL=$(netlify deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --dir=docs --json | jq '.deploy_url' --raw-output);echo "::set-env name=DEPLOY_URL::$DEPLOY_URL"
 ```
 
@@ -321,7 +321,7 @@ If clicking on "Details" one get to [a check page where the preview link is prom
 
 * To find out whether the PR is from a fork (and to skip all deploy steps for that, since forks don't have access to Netlify secrets), I use `jq` on the raw info about the build, idea I got [from Vanessa Sochat](https://github.com/r-universe/vsoch/blob/2bf10b1e30f59f5fab64ec2b7332526c47f1f4d3/.github/workflows/pull-request-update-packages.yml#L26).
 
-```
+```yaml
       - name: Is this a fork
         run: |
           fork=$(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}");echo "::set-env name=fork::$fork"
@@ -329,7 +329,7 @@ If clicking on "Details" one get to [a check page where the preview link is prom
 
 And some of the further steps are skipped based on `fork`.
 
-```
+```yaml
       - name: Install Netlify CLI
         if: env.fork == 'false'
         run: npm install netlify-cli -g
