@@ -33,26 +33,7 @@ output:
 ---
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(fig.path = "", comment = "")
 
-knitr::knit_hooks$set(
-  plot = function(x, options) {
-    hugoopts <- options$hugoopts
-    paste0(
-      "{{<figure src=",
-      '"', x, '" ',
-      if (!is.null(hugoopts)) {
-        glue::glue_collapse(
-          glue::glue('{names(hugoopts)}="{hugoopts}"'),
-          sep = " "
-        )
-      },
-      ">}}\n"
-    )
-  }
-)
-```
 
 Blablabla blog guidance blablabla. Technically, we structured the content as a bookdown gitbook which [Karthik Ram](/authors/karthik-ram/) judiciously suggested us. It was Stef's first foray into the glorious process of publishing a book with bookdown, and Maëlle's second one^1.
 
@@ -95,15 +76,77 @@ Chunks with language info are prettier anyway since they get adapted code highli
 
 I found how to write code that'll be loaded before each chapter rendering thanks to [Christophe Dervieux's answer on an old RStudio community thread](https://community.rstudio.com/t/bookdown-caching/43652/2).
 
-One simply needs to create an [R script called `_common.R` at the root of the bookdown project](https://raw.githubusercontent.com/ropensci-org/blog-guidance/master/_common.R). 
-Here's ours below. 
-It contains chunk options, `magrittr` loading, and two helper functions for rendering templates.
+One simply needs to create an [R script called `_common.R` at the root of the bookdown project](https://raw.githubusercontent.com/ropensci-org/blog-guidance/master/_common.R). Here's ours below.
 
-```{r commonr}
+
+```r
 details::details(readLines("https://raw.githubusercontent.com/ropensci-org/blog-guidance/master/_common.R"), summary = "our _common.R")
 ```
 
-Our bookdown project uses `DESCRIPTION` to track dependencies, I suppose I could use the package infrastructure more and define the helper functions as functions, but the approach above is pleasant too.
+```
+Warning in readLines("https://raw.githubusercontent.com/ropensci-org/
+blog-guidance/master/_common.R"): incomplete final line found on 'https://
+raw.githubusercontent.com/ropensci-org/blog-guidance/master/_common.R'
+```
+
+<details closed>
+<summary> <span title='Click to Expand'> our _common.R </span> </summary>
+
+```r
+
+knitr::opts_chunk$set(
+  cache = TRUE,
+  echo = FALSE
+)
+
+library("magrittr")
+
+show_template <- function(filename, 
+                          lang = "markdown",
+                          details = FALSE,
+                          yaml_only = FALSE,
+                          ...) {
+  lines <- suppressWarnings(
+    readLines(
+      file.path("templates", filename)
+    )
+  ) 
+  
+  if (yaml_only) {
+    lines <- bookdown:::fetch_yaml(lines)
+  }
+  
+  lines %>%
+    glue::glue_collapse(sep = "\n") -> template
+
+  if (details) {
+    toshow <- details::details(template, summary = filename,
+                     lang = lang,
+                     ...)
+  } else {
+    toshow <- glue::glue("````{lang}\n{template}\n````")
+  }
+
+  return(toshow)
+
+}
+
+show_checklist <- function(filenames) {
+  filenames <- file.path("checklists", filenames)
+  purrr::map(filenames, 
+             readLines) %>% 
+    unlist() %>%
+    gluedown::md_task() %>%
+    glue::glue_collapse("\n") -> x
+  
+  glue::glue("````markdown\n{x}\n````") %>% 
+    knitr::asis_output()
+}
+
+```
+
+</details>
+<br>
 
 ### Conclusion
 
