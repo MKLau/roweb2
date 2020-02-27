@@ -159,7 +159,7 @@ If clicking on "Details" one get to [a check page where the preview link is prom
 <!--html_preserve--> {{< figure src = "preview-check.png" width = "600" alt = "Screenshots of a GitHub Action check page featuring a Netlify preview link" >}}<!--/html_preserve-->
 
 
-* To find out whether the PR is from a fork (and to skip all deploy steps for that, since forks don't have access to Netlify secrets), I use `jq` on the raw info about the build, idea I got [from Vanessa Sochat](https://github.com/r-universe/vsoch/blob/2bf10b1e30f59f5fab64ec2b7332526c47f1f4d3/.github/workflows/pull-request-update-packages.yml#L26).
+* To find out whether the PR is from a fork (and to skip all deploy steps for that, since forks don't have access to the Netlify secrets saved in our repo settings), I use `jq` on the raw info about the build, idea I got [from Vanessa Sochat](https://github.com/r-universe/vsoch/blob/2bf10b1e30f59f5fab64ec2b7332526c47f1f4d3/.github/workflows/pull-request-update-packages.yml#L26).
 
 ```yaml
       - name: Is this a fork
