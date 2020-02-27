@@ -302,7 +302,7 @@ jobs:
 
 Highlights from the PR workflow above
 
-* To deploy to Netlify _and_ get the preview URL, the workflow doesn't use Netlify's GitHub Actions but instead installs Netlify CI, extracts the URL using `jq`[^3] and set it as an environment variable that can be used by next steps. I got the idea from [a thread on Netlify forum](https://community.netlify.com/t/deploying-preview-web-hook-via-api/3320/2).
+* To deploy to Netlify _and_ get the preview URL, the workflow doesn't use Netlify's GitHub Actions but instead installs Netlify CLI, extracts the URL using `jq`[^3] and set it as an environment variable that can be used by next steps. I got the idea from [a thread on Netlify forum](https://community.netlify.com/t/deploying-preview-web-hook-via-api/3320/2).
 
 ```yaml
 run: DEPLOY_URL=$(netlify deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --dir=docs --json | jq '.deploy_url' --raw-output);echo "::set-env name=DEPLOY_URL::$DEPLOY_URL"
