@@ -33,10 +33,59 @@ output:
 
 
 
-Blablabla blog guidance blablabla. Technically, we structured the content as a bookdown gitbook which [Karthik Ram](/authors/karthik-ram/) judiciously suggested us. It was Stef's first foray into the glorious process of publishing a book with bookdown, and Maëlle's second one[^1].
+After soliciting, reviewing, and publishing over 100 blog posts and tech notes by rOpenSci community members, we have launched the [rOpenSci Blog Guidelines for Authors and Editors](https://blogguide.ropensci.org/). 
+We created it to address many frequently asked questions and frequently given suggestions.
+
+Technically, we structured the content as a bookdown gitbook. It was Stef's first foray into the glorious process of publishing a book with bookdown, and Maëlle's second[^1]. And oh, we learned a lot.
 
 ### Stef (first-timer)
 
+#### 1. How to use RStudio to collaborate on a project
+
+I'm an R beginner. My blog posts have never contained any R code. I've always written them in Markdown format using the Atom editor. I am a (maybe?) intermediate git/GitHub user who still lacks good mental model and the vocabulary to explain it[^2]. I've always run git from the terminal building on recipes that Scott Chamberlain and Karthik Ram have shared with me. 
+
+This book was the first time I used RStudio hooked up to GitHub to collaborate on a project. In the process I have become much more comfortable with installing packages as needed and keeping R, RStudio, and package versions up to date with a weekly calendar reminder.
+
+For setting up RStudio and knowing to open a project from .Rproj, I liked R-Ladies Sydney's RYouWithMe (link to section 1). I used happygitwithR for connecting GitHub to RStudio (check this).
+
+Looking back in Slack convos with M I see that setting up to serve bookdown preview was tricky.
+
+When making major additions to files, I created one branch for each file.
+
+#### 2. How to usethis
+
+At the start, Maëlle asked me if I used the usethis package. I did not. 
+- interactive use in my .Rprofile
+- forced myself to use [pull request helpers](https://usethis.r-lib.org/articles/articles/pr-functions.html) -
+  - start of day, open RStudio project by clicking my local `.Rproj` file for the book, update local master, create new branch with `pr_init(branch = "branchname")`, edit files, `pr_push()` to push local changes to GitHub master and opens GitHub web interface to open a pull request. Typically I would open the pull request as a _Draft_ and continue to push edits there until ready for M to review.
+
+I use https for GitHub auth and already had it and GitHub PAT set up from happygitwithR.
+
+
+
+#### 3. How to ??
+
+
+
+#### 4. How to collaborate across an 8-hour time difference
+
+- x hours diff between us, in Kamloops and Nancy
+- ~weekly 30 min meeting (8:30am for Stef and 5:30pm for Maëlle) with agenda and notes in shared google doc. Through creating this book with Maëlle, she has coached me in learning many new things.
+- slack checkins e.g. I’m finished for the day, can you please review and merge my pull requests? or e.g. review the structure but don't’ review the text yet
+- GitHub issues assigned to one of us and tied to milestones
+
+#### 5. How to fill up a bunch of Rmd files to make a book
+
+To answer the question, "how do I do this thing?" I often compared 
+GitHub file structure and contents with live pages of books e.g. rOpenSci dev guide,  https://devguide.ropensci.org/ cf https://github.com/ropensci/dev_guide
+
+- Rmd file -> book chapter!
+- creating anchors to link to book sections
+- appendix.Rmd has text and can point to other files (using code chunks?)
+
+(maybe show one of these examples also https://adv-r.hadley.nz/, https://r-pkgs.org/index.html, https://r4ds.had.co.nz/)
+
+huge value
 
 ### Maëlle (more experienced bookdowner)
 
@@ -345,5 +394,6 @@ If _you_ want to get started with bookdown, we'd recommend [the bookdown book](h
 
 
 [^1]: The first bookdown book Maëlle worked on is [rOpenSci dev guide](https://devguide.ropensci.org/)!
+[^2]: Hat-tip to Julia Stewart Lowndes for using this phrasing to describe herself as if she read my mind.
 [^2]: [A tweet by Hadley Wickham about using the config file for ordering chapters rather than numbering their filenames](https://twitter.com/hadleywickham/status/1137317951428747270)
 [^3]: Maëlle discovered `jq` in [a blog post by Carl Boettiger](https://www.carlboettiger.info/2017/12/11/data-rectangling-with-jq/) and reported on her use of `jq` with rOpenSci `jqr` R package [in a blog post about getting data about Software Peer Review](/blog/2018/04/26/rectangling-onboarding/).
