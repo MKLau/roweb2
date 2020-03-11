@@ -69,7 +69,7 @@ I use https for GitHub auth and already had it and GitHub PAT set up from happyg
 
 #### 4. How to collaborate across an 8-hour time difference
 
-- x hours diff between us, in Kamloops and Nancy
+- 9 hours diff between us most of the year, in Kamloops and Nancy
 - ~weekly 30 min meeting (8:30am for Stef and 5:30pm for Maëlle) with agenda and notes in shared google doc. Through creating this book with Maëlle, she has coached me in learning many new things.
 - slack checkins e.g. I’m finished for the day, can you please review and merge my pull requests? or e.g. review the structure but don't’ review the text yet
 - GitHub issues assigned to one of us and tied to milestones
@@ -92,7 +92,7 @@ huge value
 #### 1. How to start a bookdown project
 
 I've started both my bookdown projects using [Sean Kross' excellent primer](https://github.com/seankross/bookdown-start),
-but whilst looking for a reference to show Stef[^2],
+but whilst looking for a reference to show Stef[^3],
 I saw a [tweet of Alison Hill's about starting a bookdown project from RStudio](https://twitter.com/apreshill/status/1137183351125577728) which looks handy. 
 [Slide of Alison's showing how to start a bookdown from RStudio](https://arm.rbind.io/slides/bookdown.html#11).
 
@@ -351,7 +351,7 @@ jobs:
 
 Highlights from the PR workflow above
 
-* To deploy to Netlify _and_ get the preview URL, the workflow doesn't use Netlify's GitHub Actions but instead installs Netlify CLI, extracts the URL using `jq`[^3] and set it as an environment variable that can be used by next steps. I got the idea from [a thread on Netlify forum](https://community.netlify.com/t/deploying-preview-web-hook-via-api/3320/2).
+* To deploy to Netlify _and_ get the preview URL, the workflow doesn't use Netlify's GitHub Actions but instead installs Netlify CLI, extracts the URL using `jq`[^4] and set it as an environment variable that can be used by next steps. I got the idea from [a thread on Netlify forum](https://community.netlify.com/t/deploying-preview-web-hook-via-api/3320/2).
 
 ```yaml
 run: DEPLOY_URL=$(netlify deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --dir=docs --json | jq '.deploy_url' --raw-output);echo "::set-env name=DEPLOY_URL::$DEPLOY_URL"
@@ -395,5 +395,5 @@ If _you_ want to get started with bookdown, we'd recommend [the bookdown book](h
 
 [^1]: The first bookdown book Maëlle worked on is [rOpenSci dev guide](https://devguide.ropensci.org/)!
 [^2]: Hat-tip to Julia Stewart Lowndes for using this phrasing to describe herself as if she read my mind.
-[^2]: [A tweet by Hadley Wickham about using the config file for ordering chapters rather than numbering their filenames](https://twitter.com/hadleywickham/status/1137317951428747270)
-[^3]: Maëlle discovered `jq` in [a blog post by Carl Boettiger](https://www.carlboettiger.info/2017/12/11/data-rectangling-with-jq/) and reported on her use of `jq` with rOpenSci `jqr` R package [in a blog post about getting data about Software Peer Review](/blog/2018/04/26/rectangling-onboarding/).
+[^3]: [A tweet by Hadley Wickham about using the config file for ordering chapters rather than numbering their filenames](https://twitter.com/hadleywickham/status/1137317951428747270)
+[^4]: Maëlle discovered `jq` in [a blog post by Carl Boettiger](https://www.carlboettiger.info/2017/12/11/data-rectangling-with-jq/) and reported on her use of `jq` with rOpenSci `jqr` R package [in a blog post about getting data about Software Peer Review](/blog/2018/04/26/rectangling-onboarding/).
